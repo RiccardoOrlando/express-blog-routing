@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const appData = require('../DatabasePost')
 
 // INDEX - Get all posts
 router.get('/', (req, res) => {
@@ -9,6 +10,15 @@ router.get('/', (req, res) => {
 // SHOW - Get single post by ID
 router.get('/:id', (req, res) => {
     const postId = req.params.id;
+    if(isNaN(postId)){
+        return res.sendStatus(400)
+    }
+    const postsSearch = appData.find((elm) => console.log(elm))
+
+
+    if(!postsSearch){
+        return res.sendStatus(404)
+    }
     res.send(`Dettagli del post ${postId}`);
 });
 
