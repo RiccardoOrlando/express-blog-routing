@@ -13,8 +13,7 @@ router.get('/:id', (req, res) => {
     if(isNaN(postId)){
         return res.sendStatus(400)
     }
-    const postsSearch = appData.find((elm) => console.log(elm))
-
+    const postsSearch = appData.find(elm => elm.id === Number(postId))
 
     if(!postsSearch){
         return res.sendStatus(404)
@@ -24,6 +23,14 @@ router.get('/:id', (req, res) => {
 
 // CREATE - Create a new post
 router.post('/', (req, res) => {
+    if(isNaN(postId)){
+        return res.sendStatus(400)
+    }
+    const postsSearch = appData.find(elm => elm.id === Number(postId))
+
+    if(!postsSearch){
+        return res.sendStatus(404)
+    }
     // Qui andrebbe la logica per creare un nuovo post
     res.send('Nuovo post creato');
 });
@@ -31,18 +38,42 @@ router.post('/', (req, res) => {
 // UPDATE - Update post by ID (PUT per aggiornamento completo)
 router.put('/:id', (req, res) => {
     const postId = req.params.id;
+    if(isNaN(postId)){
+        return res.sendStatus(400)
+    }
+    const postsSearch = appData.find(elm => elm.id === Number(postId))
+
+    if(!postsSearch){
+        return res.sendStatus(404)
+    }
     res.send(`Post ${postId} aggiornato completamente`);
 });
 
 // UPDATE - Partial update post by ID (PATCH per aggiornamento parziale)
 router.patch('/:id', (req, res) => {
     const postId = req.params.id;
+    if(isNaN(postId)){
+        return res.sendStatus(400)
+    }
+    const postsSearch = appData.find(elm => elm.id === Number(postId))
+
+    if(!postsSearch){
+        return res.sendStatus(404)
+    }
     res.send(`Post ${postId} aggiornato parzialmente`);
 });
 
 // DELETE - Delete post by ID
 router.delete('/:id', (req, res) => {
     const postId = req.params.id;
+    if(isNaN(postId)){
+        return res.sendStatus(400)
+    }
+    const postsSearch = appData.find(elm => elm.id === Number(postId))
+
+    if(!postsSearch){
+        return res.sendStatus(404)
+    }
     res.send(`Post ${postId} eliminato`);
 });
 
